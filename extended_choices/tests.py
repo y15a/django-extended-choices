@@ -11,14 +11,9 @@ The documentation format in this file is numpydoc_.
 
 """
 
-from __future__ import unicode_literals
-
 from copy import copy, deepcopy
 
-try:
-    import cPickle as pickle
-except ImportError:
-    import pickle
+import pickle
 
 from collections import OrderedDict
 import unittest

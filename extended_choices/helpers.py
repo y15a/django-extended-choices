@@ -9,12 +9,7 @@ The documentation format in this file is numpydoc_.
 
 """
 
-from __future__ import unicode_literals
-
-try:
-    from collections.abc import Mapping
-except ImportError:
-    from collections import Mapping
+from collections.abc import Mapping
 
 from django.utils.functional import Promise
 

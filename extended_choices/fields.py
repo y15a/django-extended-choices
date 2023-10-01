@@ -9,10 +9,6 @@ The documentation format in this file is `numpydoc`_.
 
 """
 
-from __future__ import unicode_literals
-
-import six
-
 from django import forms
 
 from . import Choices
@@ -42,7 +38,7 @@ class NamedExtendedChoiceFormField(forms.Field):
             return None
 
         # Validate the type.
-        if not isinstance(value, six.string_types):
+        if not isinstance(value, str):
             raise forms.ValidationError(
                 "Invalid value type (should be a string).",
                 code='invalid-choice-type',
