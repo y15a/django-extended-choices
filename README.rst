@@ -1,4 +1,5 @@
-|PyPI Version| |Build Status| |Doc Status|
+|GitHub Actions|
+
 
 django-extended-choices
 =======================
@@ -566,13 +567,8 @@ Written by Stephane "Twidi" Angel <s.angel@twidi.com> (http://twidi.com), origin
 .. |PyPI Version| image:: https://img.shields.io/pypi/v/django-extended-choices.png
    :target: https://pypi.python.org/pypi/django-extended-choices
    :alt: PyPI Version
-.. |Build Status| image:: https://travis-ci.org/twidi/django-extended-choices.png
-   :target: https://travis-ci.org/twidi/django-extended-choices
-   :alt: Build Status on Travis CI
 .. |Doc Status| image:: https://readthedocs.org/projects/django-extended-choices/badge/?version=latest
    :target: http://django-extended-choices.readthedocs.org
    :alt: Documentation Status on ReadTheDoc
-
-.. image:: https://d2weczhvl823v0.cloudfront.net/twidi/django-extended-choices/trend.png
-   :alt: Bitdeli badge
-   :target: https://bitdeli.com/free
+.. |GitHub Actions| image:: https://github.com/y15a/django-extended-choices/actions/workflows/main.yml/badge.svg
+   :target: https://github.com/y15a/django-extended-choices/actions
