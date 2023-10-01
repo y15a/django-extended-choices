@@ -78,7 +78,7 @@ As you can see there is only one declaration for all states with, for each state
 
 * the pseudo-constant name which can be used (``STATES.ONLINE`` replaces the previous ``STATE_ONLINE``)
 * the value to use in the database - which could equally be a string
-* the name to be displayed - and you can wrap the text in ``ugettext_lazy()`` if you need i18n
+* the name to be displayed - and you can wrap the text in ``gettext_lazy()`` if you need i18n
 
 And then, you can use:
 

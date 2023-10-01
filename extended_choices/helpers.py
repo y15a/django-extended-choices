@@ -80,7 +80,7 @@ class ChoiceAttributeMixin(object):
         """
 
         if issubclass(cls, Promise):
-            # Special case to manage lazy django stuff like ugettext_lazy
+            # Special case to manage lazy django stuff like gettext_lazy
             return super(ChoiceAttributeMixin, cls).__new__(cls)
 
         return super(ChoiceAttributeMixin, cls).__new__(cls, *args[:1])
@@ -105,7 +105,7 @@ class ChoiceAttributeMixin(object):
         """
 
         if isinstance(self, Promise):
-            # Special case to manage lazy django stuff like ugettext_lazy
+            # Special case to manage lazy django stuff like gettext_lazy
             # pylint: disable=protected-access
             super(ChoiceAttributeMixin, self).__init__(value._proxy____args, value._proxy____kw)
         else:
