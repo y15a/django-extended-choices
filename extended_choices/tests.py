@@ -11,14 +11,9 @@ The documentation format in this file is numpydoc_.
 
 """
 
-from __future__ import unicode_literals
-
 from copy import copy, deepcopy
 
-try:
-    import cPickle as pickle
-except ImportError:
-    import pickle
+import pickle
 
 from collections import OrderedDict
 import unittest
@@ -32,7 +27,7 @@ settings.configure(DATABASE_ENGINE='sqlite3')
 
 from django.core.exceptions import ValidationError
 from django.utils.functional import Promise
-from django.utils.translation import ugettext_lazy
+from django.utils.translation import gettext_lazy
 
 from .choices import Choices, OrderedChoices, AutoDisplayChoices, AutoChoices
 from .fields import NamedExtendedChoiceFormField
@@ -554,23 +549,23 @@ class ChoicesTestCase(BaseTestCase):
             self.MY_CHOICES.__getitem__(3)
 
     def test_it_should_work_with_django_promises(self):
-        """Test that it works with django promises, like ``ugettext_lazy``."""
+        """Test that it works with django promises, like ``gettext_lazy``."""
 
         # Init django, only needed starting from django 1.7
         if django.VERSION >= (1, 7):
             django.setup()
 
         choices = Choices(
-            ('ONE', 1, ugettext_lazy('one')),
-            ('TWO', 2, ugettext_lazy('two')),
+            ('ONE', 1, gettext_lazy('one')),
+            ('TWO', 2, gettext_lazy('two')),
         )
 
         # Key in ``displays`` dict should be promises
         self.assertIsInstance(list(choices.displays.keys())[0], Promise)
 
         # And that they can be retrieved
-        self.assertTrue(choices.has_display(ugettext_lazy('one')))
-        self.assertEqual(choices.displays[ugettext_lazy('two')].value, 2)
+        self.assertTrue(choices.has_display(gettext_lazy('one')))
+        self.assertEqual(choices.displays[gettext_lazy('two')].value, 2)
 
         return
 
@@ -639,13 +634,13 @@ class ChoicesTestCase(BaseTestCase):
         self.assertEqual(unpickled_choices.ODD, OTHER_CHOICES.ODD)
         self.assertEqual(unpickled_choices.EVEN, OTHER_CHOICES.EVEN)
 
-    def test_django_ugettext_lazy(self):
-        """Test that a choices object using ugettext_lazy could be pickled and copied."""
+    def test_django_gettext_lazy(self):
+        """Test that a choices object using gettext_lazy could be pickled and copied."""
 
         lazy_choices = Choices(
-            ('ONE', 1, ugettext_lazy('One for the money')),
-            ('TWO', 2, ugettext_lazy('Two for the show')),
-            ('THREE', 3, ugettext_lazy('Three to get ready')),
+            ('ONE', 1, gettext_lazy('One for the money')),
+            ('TWO', 2, gettext_lazy('Two for the show')),
+            ('THREE', 3, gettext_lazy('Three to get ready')),
         )
 
         # try to pickel it, it should not raise
@@ -825,18 +820,18 @@ class ChoiceAttributeMixinTestCase(BaseTestCase):
         self.assertEqual(attr.display, self.choice_entry.display)
 
     def test_it_should_work_with_django_promises(self):
-        """Test that it works with django promises, like ``ugettext_lazy``."""
+        """Test that it works with django promises, like ``gettext_lazy``."""
 
         # Init django, only needed starting from django 1.7
         if django.VERSION >= (1, 7):
             django.setup()
 
-        value = ugettext_lazy('foo')
+        value = gettext_lazy('foo')
         klass = ChoiceAttributeMixin.get_class_for_value(value)
         attr = klass(value, self.choice_entry)
 
         self.assertIsInstance(attr, Promise)
-        self.assertEqual(attr, ugettext_lazy('foo'))
+        self.assertEqual(attr, gettext_lazy('foo'))
 
 
 class ChoiceEntryTestCase(BaseTestCase):
@@ -917,20 +912,20 @@ class ChoiceEntryTestCase(BaseTestCase):
             ChoiceEntry(('FOO', 1, 'foo', {'bar': 1, 'baz': 2}, 'QUZ', 'QUX'))
 
     def test_it_should_work_with_django_promises(self):
-        """Test that ``ChoiceEntry`` class works with django promises, like ``ugettext_lazy``."""
+        """Test that ``ChoiceEntry`` class works with django promises, like ``gettext_lazy``."""
 
         # Init django, only needed starting from django 1.7
         if django.VERSION >= (1, 7):
             django.setup()
 
-        choice_entry = ChoiceEntry(('FOO', 1, ugettext_lazy('foo')))
+        choice_entry = ChoiceEntry(('FOO', 1, gettext_lazy('foo')))
 
         self.assertIsInstance(choice_entry.display, Promise)
-        self.assertEqual(choice_entry.display, ugettext_lazy('foo'))
+        self.assertEqual(choice_entry.display, gettext_lazy('foo'))
 
         self.assertEqual(choice_entry.display.constant, 'FOO')
         self.assertEqual(choice_entry.display.value, 1)
-        self.assertEqual(choice_entry.display.display, ugettext_lazy('foo'))
+        self.assertEqual(choice_entry.display.display, gettext_lazy('foo'))
 
     def test_it_should_raise_with_none_value(self):
         """Test that it's clear that we don't support None values."""

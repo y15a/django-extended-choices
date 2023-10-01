@@ -58,14 +58,8 @@ The documentation format in this file is numpydoc_.
 
 """
 
-from __future__ import unicode_literals
-import six
-
 from collections import OrderedDict
-try:
-    from collections.abc import Mapping
-except ImportError:
-    from collections import Mapping
+from collections.abc import Mapping
 
 from .helpers import ChoiceEntry
 
@@ -374,7 +368,7 @@ class Choices(list):
 
         # Check for an optional subset name as the first argument (so the first entry of *choices).
         subset_name = None
-        if choices and isinstance(choices[0], six.string_types) and choices[0] != _NO_SUBSET_NAME_:
+        if choices and isinstance(choices[0], str) and choices[0] != _NO_SUBSET_NAME_:
             subset_name = choices[0]
             choices = choices[1:]
 
@@ -1031,7 +1025,7 @@ class AutoChoices(AutoDisplayChoices):
                 continue
 
             original_choice = choice
-            if isinstance(choice, six.string_types):
+            if isinstance(choice, str):
                 if choice == _NO_SUBSET_NAME_:
                     continue
                 choice = [choice, ]

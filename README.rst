@@ -1,4 +1,5 @@
-|PyPI Version| |Build Status| |Doc Status|
+|GitHub Actions|
+
 
 django-extended-choices
 =======================
@@ -78,7 +79,7 @@ As you can see there is only one declaration for all states with, for each state
 
 * the pseudo-constant name which can be used (``STATES.ONLINE`` replaces the previous ``STATE_ONLINE``)
 * the value to use in the database - which could equally be a string
-* the name to be displayed - and you can wrap the text in ``ugettext_lazy()`` if you need i18n
+* the name to be displayed - and you can wrap the text in ``gettext_lazy()`` if you need i18n
 
 And then, you can use:
 
@@ -566,13 +567,8 @@ Written by Stephane "Twidi" Angel <s.angel@twidi.com> (http://twidi.com), origin
 .. |PyPI Version| image:: https://img.shields.io/pypi/v/django-extended-choices.png
    :target: https://pypi.python.org/pypi/django-extended-choices
    :alt: PyPI Version
-.. |Build Status| image:: https://travis-ci.org/twidi/django-extended-choices.png
-   :target: https://travis-ci.org/twidi/django-extended-choices
-   :alt: Build Status on Travis CI
 .. |Doc Status| image:: https://readthedocs.org/projects/django-extended-choices/badge/?version=latest
    :target: http://django-extended-choices.readthedocs.org
    :alt: Documentation Status on ReadTheDoc
-
-.. image:: https://d2weczhvl823v0.cloudfront.net/twidi/django-extended-choices/trend.png
-   :alt: Bitdeli badge
-   :target: https://bitdeli.com/free
+.. |GitHub Actions| image:: https://github.com/y15a/django-extended-choices/actions/workflows/main.yml/badge.svg
+   :target: https://github.com/y15a/django-extended-choices/actions
