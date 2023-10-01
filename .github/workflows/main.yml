@@ -1,0 +1,68 @@
+name: Extended Choices CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
+        django: ["30", "31", "32", "40", "41", "42"]
+        exclude:
+          - python-version: "3.10"
+            django: "30"
+          - python-version: "3.10"
+            django: "31"
+          - python-version: "3.11"
+            django: "30"
+          - python-version: "3.11"
+            django: "31"
+          - python-version: "3.11"
+            django: "32"
+          - python-version: "3.11"
+            django: "40"
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        pip install tox
+    - name: Run Tox
+      run: tox -e py${{ matrix.python-version }}-django${{ matrix.django }}
+
+  flake8:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v2
+      with:
+        python-version: "3.11"
+    - name: Install dependencies
+      run: |
+        pip install flake8
+    - name: Run Flake8
+      run: flake8 extended_choices --ignore E501,E402,E731
+
+  doctests:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v2
+      with:
+        python-version: "3.11"
+    - name: Install Django
+      run: pip install Django
+    - name: Run doctests
+      run: python -m extended_choices
